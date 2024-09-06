@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="compiler.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ 
+ <title>Compiler</title>
+   
+</head>
+<body>
+    <section class="light-mode" id="mode-section">
+        <div>
+            <div>
+                <h1>
+                    First and Follow in Compiler Design
+                    <!-- <button class="mode-button" onclick="toggleMode()">Toggle Mode</button> -->
+                    <i class="fa-solid fa-moon" id="mode-icon" onclick="toggleMode()"></i>
+                <!-- The rest of your HTML content -->
+            </div>
+
+            <!-- <h1>First and Follow in Compiler Design</h1> -->
+            <h2 class="heading">Introduction</h2>
+            <p>In this article, we will learn about First and follow in compiler design, rules to find the first and follow in compiler design, and some related examples to find first and follow.</p>
+            <img src="first-and-follow-in-compiler-design-24578.webp" alt="" >
+            <p><span>FIRST and FOLLOW</span> in compiler design are two grammatical functions that help you enter table entries. We will discuss the First and Follow in detail below. If the compiler knew ahead of time what the "initial character and follow up of the string produced when a production rule is applied," it might carefully choose which production rule to apply by comparing it to the current character or token in the input string it sees.</p>
+            <h2 class="heading">First()</h2>
+            <p><span>FIRST () </span>is a function that specifies the set of terminals that start a string derived from a production rule. It is the first terminal that appears on the right-hand side of the production. For example,<br>If the Input string is <br>
+                T->*FT’/ε  <br>Here we find out that T has two productions like T->*FT’ and T->ε, after viewing this we found the first of T in both the production statement which is * and ε. <br>
+                Then the first of the string will be {*,ε}.</p>
+            <h2 class="heading">Rules to find First()</h2>
+            <p>To find the first() of the grammar symbol, then we have to apply the following set of rules to the given grammar:-</p>
+            <ul>
+                <li>If X is a terminal, then First(X) is {X}.</li>
+                <li>If X is a non-terminal and X tends to aα is production, then add ‘a’ to the first of X. if X->ε, then add null to the First(X).</li>
+                <li>If X_>YZ then if First(Y)=ε, then First(X) = { First(Y)-ε} U First(Z)</li>
+                <li>If X->YZ, then if First(X)=Y, then First(Y)=teminal but null then First(X)=First(Y)=terminals.</li>
+            </ul>
+            <h2 class="heading">Follow()</h2>
+            <p><span>Follow ()</span> is a set of terminal symbols that can be displayed just to the right of the non-terminal symbol in any sentence format. It is the first non-terminal appearing after the given terminal symbol on the right-hand side of production. <br>
+                For example, <br> If the input string is <br> E->TE’, F->(E)/id <br>Here we found that on the right-hand side of the production statement where is the E occurs, we only found E in the production F->(E)/id through which we found the follow of E. <br>
+                Then the output Follow of E = { ) }, as ‘)’ is the non-terminal in the input string on the right-hand side of the production.
+            </p>
+            <h2 class="heading">Rules to find Follow()</h2>
+            <p>To find the follow(A) of the grammar symbol, then we have to apply the following set of rules to the given grammar:-</p>
+            <ul>
+                <li>$ is a follow of ‘S’(start symbol).</li>
+                <li>If A->αBβ,β!=ε, then first(β) is in follow(B).</li>
+                <li>If A->αB or A->αBβ where First(β)=ε, then everything in Follow(A) is a Follow(B).</li>
+            </ul>
+            <h2 class="heading">Example of First and Follow in Compiler Design</h2>
+            <p>Let us consider grammar to show how to find the first and follow in compiler design.</p>
+            <div class="prod">E->TE’ <br> E’->+TE’/ε <br> T->FT’ <br> T’->*FT’/ε <br> F->(ε)/id</div>
+            <p>Here, <br>Terminals are id, *, +, ε, (, )<br>Non-terminals are E, E’, T, T’, F <br>Now let’s try to find the first of ‘E’. here on the right-hand side of the production E->TE’ is T which is a non-terminal but we have to find the terminals so to find terminals we move to the production T->FT’ in which the first element is again a non-terminal, so we move to the third production F->(ε)/id in which the first element is a terminal which will be the first of E.
+                <br>So, First(E)={(, id}  <br> Now let’s try to find the follow of ‘E’, to find this we find the production in which ‘E’ is on the right-hand side and we get production which is F->(E)/id, so the follow will be the next non-terminal followed by the terminals which are ‘)’ and in the follow ‘$’ is always added. So the follow(E)={$,)} <br>
+                On repeating the above steps to find the first and follow in compiler design, we get
+            </p>
+            <table>
+                <tr>
+                    <th>Non-terminals</th>
+                    <th>First()</th>
+                    <th>Follow()</th>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>{(,id}</td>
+                    <td>{$,)}</td>
+                </tr>
+                <tr>
+                    <td>E'</td>
+                    <td>{+,∈}</td>
+                    <td>{$,)}</td>
+                </tr><tr>
+                    <td>T</td>
+                    <td>{*,∈}</td>
+                    <td>{$,+,)}</td>
+                </tr><tr>
+                    <td>T'</td>
+                    <td>{(,id)}</td>
+                    <td>{+,),$}</td>
+                </tr><tr>
+                    <td>F</td>
+                    <td>{(,id}</td>
+                    <td>{+,),$,*}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="atp">
+            <div class="container">
+                <p>Generate First and Follow here!</p>
+                 <form id="grammar-form">
+                    <textarea name="text" id="text" placeholder="   Enter the CFG rule here........."></textarea>
+                 <button type="button" class="btn" onclick="calculate()">Submit</button>
+                 </form>
+            </div>
+            <div id="output-container">
+                <h2>Output</h2>
+                <pre id="output"></pre>
+            </div>
+        </div>
+        <h2>Frequently Asked Questions</h2>
+        <div class="last-part">
+            <h3 class="ques">In which phase of compiler do we use first and follow?</h3>
+            <p>It is used during the parser table construction, first and follow sets are created to find the correct position of any terminal in the derivation.</p>
+            <h3 class="ques">What is the need of first and follow in compiler design?</h3>
+            <p>First() and Follow() are functions that help the parser to apply the needed rule at the correct position. It also provides selected information for recursive descent parsers.</p>
+            <h3 class="ques">Why is first and follow important?</h3>
+            <p>first and follow are important because they help the parser determine which production rule to apply to the given input. First tells which terminal can start production whereas the follows tells the parser what terminal can follow a non-terminal.</p>
+            <h3 class="ques">What are the rules for generating first and follow sets?</h3>
+            <p>First sets are generated by adding all terminals and non-terminals that can be derived from a production rule's left side. Then follows sets are generated after adding all terminals that can appear after the non-terminal in a right-hand side of a production rule. </p>
+            <h3 class="ques">Can Epsilon be in first set?</h3>
+            <p>Yes, epsilon can be in the first set if the non-terminal can derive the empty string.</p>
+            <h3 class="ques">Does the order of grammar rules affect the first set?</h3>
+            <p>Yes, the order of grammar rules affects the first set because the first terminal in the production is always chosen first.</p>
+            <h2>Conclusion</h2>
+            <p>In this article, we have extensively discussed the introduction to first and follow in compiler design. We have started with an introduction to First and Follow in compiler design, then a gave a brief description about first and follow with examples, then rules to find the first and follow and examples on it.</p>
+                
+    
+        
+        </div>
+
+<footer>
+        <div class="credit">&copy; copyright @ <?php echo date('Y'); ?> by <span>Ms. Web Designers</span>
+            <h6> <span>H</span>exa <span>C</span>oders (C221239,C221244,C221253,C221254,C221272,C221276)</h6>
+             </div>
+         
+</footer>
+
+    </section>
+    <script>
+        // function toggleMode() {
+        //     const section = document.querySelector('section');
+        //     section.classList.toggle('light-mode');
+        //     section.classList.toggle('dark-mode');
+        // }
+        function calculate() {
+    let eps = "\u03B5"; // ε (epsilon) symbol for empty string
+    let gram = []; // Array to store grammar rules
+    let output = ""; // String to store results
+    let n = 0; // n is the number of grammar rules
+
+    // Function to calculate FIRST set of a non-terminal c
+   // Function to calculate FIRST set of a non-terminal c
+   function first(c) {
+    let result = new Set(); // Use a Set to store unique elements in FIRST set
+    for (let i = 0; i < n; i++) {
+        if (gram[i].first === c) {
+            let s = gram[i].second.trim().split('|'); // Split productions by '|'
+            for (let prod of s) {
+                let firstSymbol = prod[0];
+                if (isUpper(firstSymbol)) { // Non-terminal
+                    let firstSet = first(firstSymbol);
+                    result = new Set([...result, ...firstSet]);
+                } else { // Terminal
+                    if(firstSymbol=='i')
+                    result.add("id");
+                    else
+                    result.add(firstSymbol);
+                }
+            }
+        }
+    }
+    return Array.from(result); // Convert Set to Array for easier manipulation
+}
+
+    // Function to calculate FOLLOW set of a non-terminal c
+    function follow(c) {
+        let result = new Set();
+        if (c === gram[0].first) {
+            result.add('$'); // Add $ to FOLLOW of start symbol
+        }
+        for (let i = 0; i < n; i++) {
+            let s = gram[i].second.trim().split('|'); // Split productions by '|'
+            for (let prod of s) {
+                let idx = prod.indexOf(c);
+                if (idx !== -1) {
+                    if (idx === prod.length - 1) { // c is the last symbol in production
+                        if (gram[i].first !== c) { // Avoid direct left recursion
+                            let followSet = follow(gram[i].first);
+                            result = new Set([...result, ...followSet]);
+                        }
+                    } else { // c is followed by another symbol
+                        let nextSymbol = prod[idx + 1];
+                        if (isUpper(nextSymbol)) { // Next symbol is a non-terminal
+                            let firstSet = first(nextSymbol);
+                            if (firstSet.includes('&')) { // If next symbol can derive epsilon
+                                firstSet = firstSet.filter(sym => sym !== '&');
+                                let followSet = follow(gram[i].first);
+                                result = new Set([...result, ...firstSet, ...followSet]);
+                            } else {
+                                result = new Set([...result, ...firstSet]);
+                            }
+                        } else if (['+', '-', '*', '(', ')', 'id'].includes(nextSymbol)) { // Next symbol is a terminal
+                            result.add(nextSymbol);
+                        }
+                    }
+                }
+            }
+        }
+        return Array.from(result); // Convert Set to Array for easier manipulation
+    }
+
+    // Function to check if a character is an uppercase letter (non-terminal)
+    function isUpper(c) {
+        return /[A-Z]/.test(c);
+    }
+
+    // Main function to parse the input, calculate FIRST and FOLLOW sets, and format the output
+    function main() {
+        let input = document.getElementById("text").value.trim(); // Get input from the text area
+        let lines = input.split('\n'); // Split input into lines
+        n = parseInt(lines[0]); // First line contains the number of grammar rules
+        for (let i = 1; i <= n; i++) {
+            let s = lines[i].split(' -> '); // Split into non-terminal and production
+            gram.push({ first: s[0].trim(), second: s[1].trim() }); // Store grammar rule
+        }
+
+        let result = "";
+
+        // Calculate and format FIRST sets
+        for (let i = 0; i < n; i++) {
+            let firstSet = first(gram[i].first); // Calculate FIRST set for current non-terminal
+            result += `First of ${gram[i].first} : { ${firstSet.join(', ')} }\n`;
+        }
+
+        result += "\n";
+
+        // Calculate and format FOLLOW sets
+        for (let i = 0; i < n; i++) {
+            let followSet = follow(gram[i].first); // Calculate FOLLOW set for current non-terminal
+            result += `Follow of ${gram[i].first} : { ${followSet.join(', ')} }\n`;
+        }
+
+        document.getElementById("output").textContent = result; // Display the result
+    }
+
+    main(); // Call the main function to start the calculations
+    }
+
+        function toggleMode() {
+            const section = document.getElementById('mode-section');
+            section.classList.toggle('dark-mode');
+            section.classList.toggle('light-mode');
+
+            // Toggle icon based on current mode
+            const modeIcon = document.getElementById('mode-icon');
+            if (section.classList.contains('dark-mode')) {
+                modeIcon.classList.remove('fa-solid fa-moon');
+                modeIcon.classList.add('fa-sun');
+            } else {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

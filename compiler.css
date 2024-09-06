@@ -1,0 +1,124 @@
+body{
+    color: white;
+    margin: 0;
+    padding: 0px;
+}
+section{    
+    width: 70%;
+    background-color:white;
+    align-items: center;
+    margin: auto;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+h1{
+    text-align: center;
+    color: white;
+    background: -webkit-linear-gradient(#cd9494, #7e6161);
+}
+h2.heading{
+    color: rgb(223, 101, 21);
+}
+h3.ques{
+    color: rgb(13, 26, 120);
+    
+}
+h6{
+    color: rgb(230, 217, 216);
+}
+h6 span{
+    font-size: 30px;
+}
+p{
+    line-height: 2rem;
+    color: black;
+}
+li{
+    color: black;
+}
+span{
+    color: black;
+    size: bold;
+}
+img
+{
+    width: 50%;
+    height: 50%;
+    /*align-items:center;*/
+    margin: auto 15%;
+    padding: 50px;
+}
+.prod{
+    background-color: rgb(200, 195, 195);
+    color: black;
+    padding: 2% 10%;
+    line-height: 2rem;
+    letter-spacing: 0.3rem;
+    width: 30%;
+    margin: auto;
+}
+table {
+    padding: auto;
+    margin: 5px auto;
+    border-collapse:collapse ;
+    background-color: rgb(200, 195, 195);
+    color: black;
+    width: 50%;
+}
+table tr{
+    border: 1px solid black;
+    padding: 5%;
+    margin: 5px auto;
+    text-align: center;
+}
+table td th{
+    padding: auto;
+}
+.last-part{
+    margin: 0 10px;
+}
+.btn{
+     padding: 50px;
+}
+
+
+
+/*Mode*/
+section.light-mode {
+    background-color: white;
+    color: black;
+}
+section.light-mode * {
+    color: black;
+}
+section.light-mode h2{
+    color:rgb(223, 101, 21);;
+}
+section.light-mode h3.ques{
+    color: rgb(13, 26, 120);
+}
+section.dark-mode {
+    background-color: black;
+    color: white;
+}
+section.dark-mode * {
+    color: white;
+}
+section.dark-mode h2{
+    color:rgb(223, 101, 21);;
+}
+section.dark-mode h3.ques{
+    color: rgb(233, 237, 12);
+}
+
+.mode-button {
+    margin-left: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#icon{
+    color: white;
+    padding: 10px;
+}
